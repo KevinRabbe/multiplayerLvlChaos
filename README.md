@@ -23,12 +23,14 @@ When documents appear to overlap, use this order and report any contradiction in
 5. `docs/QUESTS.md` — private quest catalogue and validation rules.
 6. `docs/INCIDENTS.md` — corporate incident rules.
 7. `docs/LEVEL_SUPERMARKET.md` — map, zones, spawns, object placement.
-8. `docs/ROUND_LIFECYCLE.md` — chronological match lifecycle.
-9. `docs/ARCHITECTURE.md` — technical architecture.
-10. `docs/NETWORKING.md` — authority, replication, prediction, reconnect.
-11. `docs/ACCEPTANCE_TESTS.md` — definition of a successful implementation.
-12. `docs/IMPLEMENTATION_PLAN.md` — milestone order and gates.
-13. `docs/TRACEABILITY.md` — system/content dependency audit.
+8. `docs/CONTENT_CATALOG.md` — physical object/archetype catalogue and counts.
+9. `docs/PRESENTATION.md` — characters, art, animation, audio, UI and onboarding.
+10. `docs/ROUND_LIFECYCLE.md` — chronological match lifecycle.
+11. `docs/ARCHITECTURE.md` — technical architecture.
+12. `docs/NETWORKING.md` — authority, replication, prediction, reconnect.
+13. `docs/ACCEPTANCE_TESTS.md` — definition of a successful implementation.
+14. `docs/IMPLEMENTATION_PLAN.md` — milestone order and gates.
+15. `docs/TRACEABILITY.md` — system/content dependency audit and result metrics.
 
 ## Core design pillars
 
