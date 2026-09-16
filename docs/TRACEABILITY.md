@@ -22,7 +22,7 @@ Purpose: ensure every authored player-facing objective/incident depends only on 
 | Alcohol/intoxication | state/social quests | `PRODUCT_SPEC.md`, `TUNING.md` |
 | Baguette/fullness | state/place quests | `PRODUCT_SPEC.md`, `TUNING.md` |
 | Plant state | PLACE-06, KEEP-01, INC-12 | `PRODUCT_SPEC.md`, `QUESTS.md` |
-| Entrance traversability | opening, KEEP-07, INC-06 | `QUESTS.md`, `INCIDENTS.md` |
+| Entrance traversability | opening, WORK-09, KEEP-07, INC-06 | `QUESTS.md`, `INCIDENTS.md` |
 | Lost Property/OOB recovery | fail-soft object rules | `LEVEL_SUPERMARKET.md`, `ROUND_LIFECYCLE.md` |
 | Proximity voice/text | social information model | `PRODUCT_SPEC.md`, `NETWORKING.md` |
 | PA one-user broadcast | social information model | `PRODUCT_SPEC.md`, `NETWORKING.md` |
@@ -36,12 +36,12 @@ Purpose: ensure every authored player-facing objective/incident depends only on 
 | WORK-01 | sale-product categories, correct shelf zones, personal placement event |
 | WORK-02 | 12 carts, CartStaging, personal cart movement/zone transition |
 | WORK-03 | checkout scanner, CustomerServed final-scanner attribution |
-| WORK-04 | frozen product category, Freezer zone/support |
+| WORK-04 | frozen product category, Freezer storage zone/support |
 | WORK-05 | 07:00 delivery, current-shift delivery identity, Storage zone |
 | WORK-06 | watermelons, designated Produce displays, support state |
 | WORK-07 | slippery puddles, mop cleaning completion attribution |
 | WORK-08 | slippery puddles, 4 wet-floor signs, adjacency detector |
-| WORK-09 | Preparation phase, stocking/cart/checkout/entrance action events |
+| WORK-09 | Preparation phase, stocking/cart/checkout action events, personal blocker removal causing Entrance obstructed→clear transition within 2 sec |
 | WORK-10 | three checkout operational transitions + player attribution |
 
 ### PLACE
@@ -51,7 +51,7 @@ Purpose: ensure every authored player-facing objective/incident depends only on 
 | PLACE-01 | 40 watermelons, Roof zone, EndSnapshot |
 | PLACE-02 | watermelons, ManagerOffice zone, 5-sec confirmation |
 | PLACE-03 | cans, cluster query, vertical relation/support |
-| PLACE-04 | toilet-paper packs, ManagerOffice doorway obstruction detector |
+| PLACE-04 | ≥6 toilet-paper packs in office-doorway volume + doorway severe-obstruction detector |
 | PLACE-05 | 6 movable chairs, Aisle4 zone |
 | PLACE-06 | unique plant, checkout conveyor support/powered state, cumulative timer |
 | PLACE-07 | baguettes, StaffRoom zone, spatial cluster query |
@@ -68,7 +68,7 @@ Purpose: ensure every authored player-facing objective/incident depends only on 
 | CHAOS-03 | freezer door authoritative angle state |
 | CHAOS-04 | current-shift delivery boxes, Storage membership |
 | CHAOS-05 | Entrance zone, non-cart movable props |
-| CHAOS-06 | Checkout3 operational state + StoreOpened |
+| CHAOS-06 | StoreOpened + owner-caused Checkout3 operational→non-operational transition + sustained offline state |
 | CHAOS-07 | canned product category, correct sales-zone mapping |
 | CHAOS-08 | authoritative puddle creation causality |
 | CHAOS-09 | active slippery puddles, wet-floor-sign adjacency |
@@ -111,13 +111,13 @@ Purpose: ensure every authored player-facing objective/incident depends only on 
 | KEEP-01 | unique plant Intact/Fallen/Destroyed + EndSnapshot |
 | KEEP-02 | unique red-handle cart, indoor zone, upright orientation + EndSnapshot |
 | KEEP-03 | can cluster/height query + sustained timer |
-| KEEP-04 | StaffRoom + SaleProduct classification |
-| KEEP-05 | all freezer doors Closed logical state |
-| KEEP-06 | ManagerOffice watermelon membership with 1-sec entry stability |
-| KEEP-07 | shared authoritative entrance-traversability detector |
+| KEEP-04 | StoreOpened + StaffRoom + SaleProduct classification |
+| KEEP-05 | StoreOpened + all freezer doors Closed logical state |
+| KEEP-06 | StoreOpened + ManagerOffice watermelon membership with 1-sec entry stability |
+| KEEP-07 | StoreOpened + shared authoritative entrance-traversability detector |
 | KEEP-08 | operational checkout count + StoreOpened |
-| KEEP-09 | active slippery-puddle count |
-| KEEP-10 | Produce display support state for watermelons |
+| KEEP-09 | first-slippery-puddle-existed event + StoreOpened + active slippery-puddle count |
+| KEEP-10 | StoreOpened + Produce display support state for watermelons |
 
 ## Incident dependency matrix
 
@@ -126,7 +126,7 @@ Purpose: ensure every authored player-facing objective/incident depends only on 
 | INC-01 | CartStaging occupancy ≤2/15 sec |
 | INC-02 | CartStaging occupancy 0/10 sec |
 | INC-03 | authoritative open freezer count ≥3/20 sec |
-| INC-04 | checkout non-operational/10 sec |
+| INC-04 | previously operational checkout transitions offline after StoreOpened and remains offline 10 sec |
 | INC-05 | operational checkout count ≤1 + active customers ≥4/10 sec |
 | INC-06 | shared entrance severe-obstruction detector/10 sec |
 | INC-07 | active slippery puddles ≥3/10 sec |
@@ -245,6 +245,7 @@ No scores/rankings/MVP derived from these.
 - Customer purchasing really removes eligible sale products from world stock.
 - Delivery boxes do not unpack into additional sale stock in V1.
 - Quest generator must leave slack according to `TUNING.md` resource budgets.
+- Passive protection/endurance quests should be weighted toward rounds where opposing quests or natural pressure make them meaningful rather than auto-filling a player's task list with uncontested timers.
 
 ## Known future-undecided item
 
