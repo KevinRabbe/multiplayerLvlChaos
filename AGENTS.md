@@ -12,12 +12,14 @@ Read these documents before implementing affected systems:
 4. `docs/QUESTS.md`
 5. `docs/INCIDENTS.md`
 6. `docs/LEVEL_SUPERMARKET.md`
-7. `docs/ROUND_LIFECYCLE.md`
-8. `docs/ARCHITECTURE.md`
-9. `docs/NETWORKING.md`
-10. `docs/ACCEPTANCE_TESTS.md`
-11. `docs/IMPLEMENTATION_PLAN.md`
-12. `docs/TRACEABILITY.md`
+7. `docs/CONTENT_CATALOG.md`
+8. `docs/PRESENTATION.md`
+9. `docs/ROUND_LIFECYCLE.md`
+10. `docs/ARCHITECTURE.md`
+11. `docs/NETWORKING.md`
+12. `docs/ACCEPTANCE_TESTS.md`
+13. `docs/IMPLEMENTATION_PLAN.md`
+14. `docs/TRACEABILITY.md`
 
 If documents conflict, **stop and report the contradiction**. Do not choose whichever interpretation seems preferable.
 
