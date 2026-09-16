@@ -43,6 +43,7 @@
 - Delivery-dependent assignments/lobby: max ~4.
 - No deliberate hard-exclusive conflict pairs initially.
 - Avoid same quest to same player in consecutive rounds where alternatives exist.
+- Protection/endurance quests that can otherwise complete passively should be weighted toward rounds containing a meaningful opposing quest or natural pressure source rather than filling the pool with unchallenged timers.
 
 Finite-resource allocation targets are defined in `TUNING.md`.
 
@@ -132,7 +133,7 @@ Finite-resource allocation targets are defined in `TUNING.md`.
   2. return a cart to staging;
   3. activate Checkout 1;
   4. activate Checkout 2;
-  5. meaningfully clear an obstructed entrance.
+  5. clear the entrance by personally moving/removing a blocking movable object such that the authoritative entrance detector transitions from severely obstructed to clear within 2 sec of that interaction.
 
 ## WORK-10 — Checkout Technician
 
@@ -179,7 +180,7 @@ Finite-resource allocation targets are defined in `TUNING.md`.
 
 - Effort: Medium.
 - Type: SustainedState.
-- Uses the same practical doorway-obstruction concept as navigation/entrance logic, localized to the office doorway.
+- At least 6 toilet-paper packs must be inside the authored office-doorway obstruction volume while that doorway's authoritative traversability detector reports severe obstruction.
 
 ## PLACE-05 — Chair Department
 
@@ -276,10 +277,13 @@ Finite-resource allocation targets are defined in `TUNING.md`.
 
 ## CHAOS-06 — Checkout Reduction
 
-**Text:** While the store is open, keep Checkout 3 non-operational for 90 seconds.
+**Text:** While the store is open, personally switch Checkout 3 from operational to non-operational, then keep it non-operational for 90 seconds.
 
 - Effort: Medium.
-- Type: SustainedState.
+- Type: Sequence → SustainedState.
+- Stage 1 only begins from a real operational→non-operational transition caused by the quest owner after StoreOpened.
+- Checkout 3 beginning the shift OFF does not grant progress.
+- If Checkout 3 becomes operational during the 90-sec hold, the sustained timer resets; the owner may disable it again to restart the hold without repeating a separate permanent stage.
 
 ## CHAOS-07 — Product Relocation
 
@@ -540,7 +544,7 @@ Finite-resource allocation targets are defined in `TUNING.md`.
 
 ## KEEP-04 — Clean Freak
 
-**Text:** Keep the Staff Room free of sale products for 90 seconds.
+**Text:** While the store is open, keep the Staff Room free of sale products for 90 seconds.
 
 - Effort: Medium.
 - Type: SustainedState.
@@ -548,7 +552,7 @@ Finite-resource allocation targets are defined in `TUNING.md`.
 
 ## KEEP-05 — Freezer Discipline
 
-**Text:** Keep every freezer door Closed for 60 seconds.
+**Text:** While the store is open, keep every freezer door Closed for 60 seconds.
 
 - Effort: Medium.
 - Type: SustainedState.
@@ -557,7 +561,7 @@ Finite-resource allocation targets are defined in `TUNING.md`.
 
 ## KEEP-06 — No Produce Executives
 
-**Text:** Keep the Manager Office at zero watermelons for 90 seconds.
+**Text:** While the store is open, keep the Manager Office at zero watermelons for 90 seconds.
 
 - Effort: Medium.
 - Type: SustainedState.
@@ -565,7 +569,7 @@ Finite-resource allocation targets are defined in `TUNING.md`.
 
 ## KEEP-07 — Clear Entrance
 
-**Text:** Keep the entrance practically clear for 60 seconds.
+**Text:** While the store is open, keep the entrance practically clear for 60 seconds.
 
 - Effort: Medium.
 - Type: SustainedState.
@@ -580,15 +584,18 @@ Finite-resource allocation targets are defined in `TUNING.md`.
 
 ## KEEP-09 — Dry Floor
 
-**Text:** Maintain zero active slippery puddles anywhere in the playable supermarket for 180 continuous seconds.
+**Text:** After at least one slippery puddle has existed during the shift, restore the store to zero active slippery puddles and keep it dry for 180 continuous seconds.
 
 - Effort: Heavy.
-- Type: SustainedState.
-- Spit mess does not count because it is non-slippery.
+- Type: Sequence → SustainedState.
+- Stage 1 arms once any authoritative slippery puddle has existed during this shift.
+- Stage 2 requires zero active slippery puddles for 180 continuous seconds while the store is open.
+- Spit does not count because it is non-slippery.
+- The owner may deliberately create/clean a puddle if nobody else does; the quest must not complete passively before any spill has occurred.
 
 ## KEEP-10 — Orderly Produce
 
-**Text:** Keep at least 10 watermelons correctly supported on designated produce displays for 60 seconds.
+**Text:** While the store is open, keep at least 10 watermelons correctly supported on designated produce displays for 60 seconds.
 
 - Effort: Medium.
 - Type: SustainedState.
