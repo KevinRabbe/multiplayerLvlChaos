@@ -93,13 +93,17 @@ Door logic:
 
 ## INC-04 — Register Offline
 
-**Trigger:** any checkout remains non-operational for 10 sec while store is open.
+**Trigger:** after StoreOpened, a checkout that has previously been operational transitions to non-operational and remains non-operational for 10 sec.
+
+A checkout that simply started the round OFF and was never activated does **not** trigger this incident. This is especially important for optional Checkout 3.
 
 **Message:**
 
 > **CHECKOUT NOTICE:** A register has gone offline.
 
 Do not identify which register in the first-level message.
+
+Re-arm for that checkout only after it returns to operational and later goes offline again, subject to ordinary same-incident cooldown/scheduler rules.
 
 ## INC-05 — Checkout Collapse
 
