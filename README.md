@@ -25,12 +25,13 @@ When documents appear to overlap, use this order and report any contradiction in
 7. `docs/LEVEL_SUPERMARKET.md` — map, zones, spawns, object placement.
 8. `docs/CONTENT_CATALOG.md` — physical object/archetype catalogue and counts.
 9. `docs/PRESENTATION.md` — characters, art, animation, audio, UI and onboarding.
-10. `docs/ROUND_LIFECYCLE.md` — chronological match lifecycle.
-11. `docs/ARCHITECTURE.md` — technical architecture.
-12. `docs/NETWORKING.md` — authority, replication, prediction, reconnect.
-13. `docs/ACCEPTANCE_TESTS.md` — definition of a successful implementation.
-14. `docs/IMPLEMENTATION_PLAN.md` — milestone order and gates.
-15. `docs/TRACEABILITY.md` — system/content dependency audit and result metrics.
+10. `docs/SESSION_FLOW.md` — public/private lobby, roster, AFK, rematch and moderation flow.
+11. `docs/ROUND_LIFECYCLE.md` — chronological match lifecycle.
+12. `docs/ARCHITECTURE.md` — technical architecture.
+13. `docs/NETWORKING.md` — authority, replication, prediction, reconnect.
+14. `docs/ACCEPTANCE_TESTS.md` — definition of a successful implementation.
+15. `docs/IMPLEMENTATION_PLAN.md` — milestone order and gates.
+16. `docs/TRACEABILITY.md` — system/content dependency audit and result metrics.
 
 ## Core design pillars
 
