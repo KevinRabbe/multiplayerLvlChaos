@@ -414,6 +414,7 @@ Traversal targets: manager office→entrance ~6–8 sec sprint; storage→produc
 - Delivery-dependent assignments/lobby: max ~4.
 - No hard-exclusive conflict pairs initially.
 - Avoid exact same quest to same player in consecutive rounds where alternatives exist.
+- Protection/endurance quests that would otherwise be passive should be weighted toward meaningful opposing quest/natural pressure rather than filling rounds with unchallenged timers.
 
 Finite-resource allocation targets:
 
@@ -437,7 +438,30 @@ Finite-resource allocation targets:
 - Banner ~5 sec.
 - No culprit display.
 
-See `INCIDENTS.md` for exact triggers.
+### Trigger summary
+
+| Incident | Baseline trigger |
+|---|---|
+| Cart shortage | ≤2 staged carts for 15 sec |
+| Total cart shortage | 0 staged carts for 10 sec |
+| Freezer warning | ≥3 open doors for 20 sec |
+| Checkout offline | a previously operational checkout transitions offline and remains offline 10 sec |
+| Checkout collapse | ≤1 operational checkout with ≥4 active customers for 10 sec |
+| Entrance obstructed | severe obstruction 10 sec |
+| Liquid problem | ≥3 active slippery puddles for 10 sec |
+| Major spill | rapid overlapping puddle cluster |
+| Delivery backlog | ≥10 boxes dock-side after 2 min, then 15 sec persistence |
+| Delivery scattered | ≥8 current-delivery boxes outside LoadingDock/Storage for 20 sec |
+| Office warehouse | ≥8 loose sale products in office for 10 sec |
+| Plant death | Destroyed event |
+| Products on floor | ≥20 qualifying floor products for 20 sec |
+| Aisle obstruction | severe customer-traversal obstruction 15 sec |
+| Product shortage | zero accessible purchasable items in a demanded category for 20 sec |
+| Complaint spike | 5 valid complaints in rolling 60 sec |
+| Checkout crowd | ≥6 queue-assigned customers for 10 sec |
+| Dirty store | cleanliness ≤25 for 30 sec |
+
+See `INCIDENTS.md` for authoritative detector details.
 
 ## Character generation
 
